@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Portfolio | Showcase</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+            color: #e2e8f0;
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .thumbnail-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .thumbnail-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .footer-gradient {
+            background: linear-gradient(135deg, rgba(15, 15, 35, 0.9) 0%, rgba(26, 26, 46, 0.9) 100%);
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Navigation -->
+    
+    <!-- Hero Section -->
+    <section class="py-20 px-4 pt-48 md:px-12 text-center">
+        <h1 class="text-4xl md:text-6xl font-bold mb-6">
+            Showcasing <span class="hero-gradient">Web Designs</span> made by me
+        </h1>
+        <p class="text-xl max-w-2xl mx-auto mb-10 text-gray-300">
+            A curated collection of modern, responsive, and visually stunning web designs for inspiration and public display.
+        </p>
+        <div class="hidden justify-center space-x-4"><!-- flex -->
+            <button class="px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-lg font-medium transition-colors">
+                Explore Designs
+            </button>
+            <button class="px-6 py-3 glass-card hover:bg-purple-500/20 rounded-lg font-medium transition-colors">
+                Contact Us
+            </button>
+        </div>
+    </section>
+
+    <!-- Portfolio Grid -->
+    <section class="py-12 px-4 md:px-12">
+        <h2 class="text-3xl font-bold text-center mb-12">Featured Web Designs</h2>
+        
+        <div id="portfolioGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+            <!-- Portfolio items will be dynamically loaded here -->
+        </div>
+        
+        <div class="text-center mt-12">
+            <button class="px-6 py-3 glass-card hover:bg-purple-500/20 rounded-lg font-medium transition-colors">
+                View All Designs
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-gradient py-12 px-4 md:px-12 mt-16">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div class="md:col-span-2">
+                <h3 class="text-2xl font-bold mb-4">
+                    <span class="hero-gradient">DesignPortfolio</span>
+                </h3>
+                <p class="text-gray-400 max-w-md">
+                    A curated collection of exceptional web designs for inspiration and public display. Showcasing the best in modern web design trends and techniques.
+                </p>
+                <div class="hidden space-x-4 mt-6"><!--flex-->
+                    <a href="#" class="w-10 h-10 glass-card rounded-full flex items-center justify-center hover:bg-purple-500/20 transition-colors">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 glass-card rounded-full flex items-center justify-center hover:bg-purple-500/20 transition-colors">
+                        <i class="fab fa-dribbble"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 glass-card rounded-full flex items-center justify-center hover:bg-purple-500/20 transition-colors">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 glass-card rounded-full flex items-center justify-center hover:bg-purple-500/20 transition-colors">
+                        <i class="fab fa-behance"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="hidden">
+                <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-gray-400 hover:text-purple-400 transition-colors">Home</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-purple-400 transition-colors">Portfolio</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-purple-400 transition-colors">Services</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-purple-400 transition-colors">About Us</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-purple-400 transition-colors">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h4 class="text-lg font-semibold mb-4">All designs belongs to</h4>
+                <ul class="space-y-2 text-gray-400">
+                    <li class="flex items-start">
+                        <i class="fa-solid fa-user mt-1 mr-2 text-purple-400"></i>
+                        <span>Bishal Biswas</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-envelope mt-1 mr-2 text-purple-400"></i>
+                        <span>bishal.biswas.4796@gmail.com</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto border-t border-gray-800 mt-8 pt-8 text-center text-gray-500">
+            <p>&copy; <script>document.write(new Date().getFullYear());</script> DesignPortfolio by <a class="hero-gradient" href="https://bishalbiswas.dev">Bishal Biswas</a>. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="sites-data.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

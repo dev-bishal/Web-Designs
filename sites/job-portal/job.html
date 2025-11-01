@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Details | JobConnect</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <i class="fas fa-briefcase text-blue-600 text-2xl mr-2"></i>
+                        <span class="text-xl font-bold text-gray-900"><a href="/sites/job-portal/">JobConnect</a></span>
+                    </div>
+                    <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                        <a href="index.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Home</a>
+                        <a href="#" class="border-blue-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Jobs</a>
+                        <a href="#" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Companies</a>
+                        <a href="#" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">About</a>
+                    </div>
+                </div>
+                <div class="hidden sm:ml-6 sm:flex sm:items-center">
+                    <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium">Post a Job</button>
+                    <button class="ml-4 bg-gray-100 hover:bg-gray-200 text-gray-800 px-4 py-2 rounded-md text-sm font-medium">Sign In</button>
+                </div>
+                <div class="-mr-2 flex items-center sm:hidden">
+                    <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500">
+                        <span class="sr-only">Open main menu</span>
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Job Details Section -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="bg-white shadow rounded-lg overflow-hidden">
+            <div class="px-6 py-8 sm:px-10 sm:py-10">
+                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start">
+                    <div class="flex items-start">
+                        <img class="h-16 w-16 rounded-full object-cover" src="https://logo.clearbit.com/google.com" alt="Google" id="companyLogo">
+                        <div class="ml-4">
+                            <h1 class="text-2xl font-bold text-gray-900" id="jobTitle">Frontend Developer</h1>
+                            <p class="text-lg text-gray-600 mt-1" id="companyName">Google</p>
+                            <div class="mt-2 flex flex-wrap gap-2" id="jobTags">
+                                <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full">Remote</span>
+                                <span class="px-2 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">Full-time</span>
+                                <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs font-medium rounded-full">JavaScript</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4 sm:mt-0">
+                        <div class="flex items-center text-gray-500">
+                            <i class="fas fa-map-marker-alt mr-1"></i>
+                            <span id="jobLocation">Worldwide</span>
+                        </div>
+                        <div class="mt-2 text-gray-900 font-medium" id="jobSalary">$90k - $120k</div>
+                        <div class="mt-4">
+                            <button id="applyButton" class="hidden px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                Apply Now
+                            </button>
+                            <div id="countdown" class="text-sm text-gray-500 mt-2">
+                                Apply button will be available in <span id="countdownTimer">30</span> seconds
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-10 border-t border-gray-200 pt-8">
+                    <h2 class="text-xl font-bold text-gray-900">Job Description</h2>
+                    <div class="mt-4 text-gray-600 space-y-4" id="jobDescription">
+                        <p>We are looking for a skilled Frontend Developer to join our team at Google. You will be responsible for building user interfaces and implementing features for our web applications.</p>
+                        
+                        <h3 class="text-lg font-medium text-gray-900 mt-6">Responsibilities:</h3>
+                        <ul class="list-disc pl-5 space-y-2">
+                            <li>Develop new user-facing features using React.js</li>
+                            <li>Build reusable components and front-end libraries for future use</li>
+                            <li>Translate designs and wireframes into high-quality code</li>
+                            <li>Optimize components for maximum performance across a vast array of web-capable devices and browsers</li>
+                            <li>Collaborate with product designers and backend engineers to deliver the best user experience</li>
+                        </ul>
+                        
+                        <h3 class="text-lg font-medium text-gray-900 mt-6">Requirements:</h3>
+                        <ul class="list-disc pl-5 space-y-2">
+                            <li>3+ years of experience with JavaScript, including DOM manipulation and the JavaScript object model</li>
+                            <li>Thorough understanding of React.js and its core principles</li>
+                            <li>Experience with popular React.js workflows (such as Flux or Redux)</li>
+                            <li>Familiarity with newer specifications of EcmaScript</li>
+                            <li>Experience with data structure libraries (e.g., Immutable.js)</li>
+                            <li>Knowledge of isomorphic React is a plus</li>
+                            <li>Familiarity with RESTful APIs</li>
+                            <li>Knowledge of modern authorization mechanisms, such as JSON Web Token</li>
+                            <li>Familiarity with modern front-end build pipelines and tools</li>
+                            <li>Experience with common front-end development tools such as Babel, Webpack, NPM, etc.</li>
+                            <li>Ability to understand business requirements and translate them into technical requirements</li>
+                            <li>A knack for benchmarking and optimization</li>
+                        </ul>
+                        
+                        <h3 class="text-lg font-medium text-gray-900 mt-6">Benefits:</h3>
+                        <ul class="list-disc pl-5 space-y-2">
+                            <li>Competitive salary and equity package</li>
+                            <li>Health, dental, and vision insurance</li>
+                            <li>401(k) matching</li>
+                            <li>Flexible work hours and remote work options</li>
+                            <li>Generous vacation policy</li>
+                            <li>Professional development budget</li>
+                            <li>Free meals and snacks (when in office)</li>
+                            <li>Team outings and events</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="mt-10 border-t border-gray-200 pt-8">
+                    <h2 class="text-xl font-bold text-gray-900">About Google</h2>
+                    <div class="mt-4 text-gray-600">
+                        <p>Google is an American multinational technology company that specializes in Internet-related services and products, which include online advertising technologies, a search engine, cloud computing, software, and hardware. Google's mission is to organize the world's information and make it universally accessible and useful.</p>
+                        <p class="mt-4">Since our founding in 1998, Google has grown by leaps and bounds. From offering search in a single language we now offer dozens of products and services—including various forms of advertising and web applications for all kinds of tasks—in scores of languages. And starting from two computer science students in a university dorm room, we now have thousands of employees and offices around the world.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Similar Jobs Section -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6">Similar Jobs</h2>
+        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <!-- Similar Job 1 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                <div class="p-6">
+                    <div class="flex items-center">
+                        <img class="h-12 w-12 rounded-full object-cover" src="https://logo.clearbit.com/facebook.com" alt="Facebook">
+                        <div class="ml-4">
+                            <h3 class="text-lg font-medium text-gray-900">React Developer</h3>
+                            <p class="text-gray-500">Meta</p>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex flex-wrap gap-2">
+                        <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full">Remote</span>
+                        <span class="px-2 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">Full-time</span>
+                    </div>
+                    <div class="mt-4 flex justify-between items-center">
+                        <p class="text-gray-500"><i class="fas fa-map-marker-alt mr-1"></i> Worldwide</p>
+                        <p class="text-gray-900 font-medium">$95k - $125k</p>
+                    </div>
+                    <div class="mt-6">
+                        <a href="job.html?id=7" class="w-full inline-flex justify-center items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                            View Details
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Similar Job 2 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                <div class="p-6">
+                    <div class="flex items-center">
+                        <img class="h-12 w-12 rounded-full object-cover" src="https://logo.clearbit.com/airbnb.com" alt="Airbnb">
+                        <div class="ml-4">
+                            <h3 class="text-lg font-medium text-gray-900">UI Engineer</h3>
+                            <p class="text-gray-500">Airbnb</p>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex flex-wrap gap-2">
+                        <span class="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs font-medium rounded-full">Hybrid</span>
+                        <span class="px-2 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">Full-time</span>
+                    </div>
+                    <div class="mt-4 flex justify-between items-center">
+                        <p class="text-gray-500"><i class="fas fa-map-marker-alt mr-1"></i> San Francisco, CA</p>
+                        <p class="text-gray-900 font-medium">$100k - $130k</p>
+                    </div>
+                    <div class="mt-6">
+                        <a href="job.html?id=8" class="w-full inline-flex justify-center items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                            View Details
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Similar Job 3 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                <div class="p-6">
+                    <div class="flex items-center">
+                        <img class="h-12 w-12 rounded-full object-cover" src="https://logo.clearbit.com/spotify.com" alt="Spotify">
+                        <div class="ml-4">
+                            <h3 class="text-lg font-medium text-gray-900">Frontend Engineer</h3>
+                            <p class="text-gray-500">Spotify</p>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex flex-wrap gap-2">
+                        <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full">Remote</span>
+                        <span class="px-2 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">Full-time</span>
+                    </div>
+                    <div class="mt-4 flex justify-between items-center">
+                        <p class="text-gray-500"><i class="fas fa-map-marker-alt mr-1"></i> New York, NY</p>
+                        <p class="text-gray-900 font-medium">$105k - $135k</p>
+                    </div>
+                    <div class="mt-6">
+                        <a href="job.html?id=9" class="w-full inline-flex justify-center items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                            View Details
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-500 tracking-wider uppercase">For Job Seekers</h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="#" class="text-base text-gray-600 hover:text-gray-900">Browse Jobs</a></li>
+                        <li><a href="#" class="text-base text-gray-600 hover:text-gray-900">Create Profile</a></li>
+                        <li><a href="#" class="text-base text-gray-600 hover:text-gray-900">Job Alerts</a></li>
+                        <li><a href="#" class="text-base text-gray-600 hover:text-gray-900">Career Advice</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-500 tracking-wider uppercase">For Employers</h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="#" class="text-base text-gray-600 hover:text-gray-900">Post a Job</a></li>
+                        <li><a href="#" class="text-base text-gray-600 hover:text-gray-900">Browse Candidates</a></li>
+                        <li><a href="#" class="text-base text-gray-600 hover:text-gray-900">Pricing</a></li>
+                        <li><a href="#" class="text-base text-gray-600 hover:text-gray-900">Recruiting Solutions</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-500 tracking-wider uppercase">Company</h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="#" class="text-base text-gray-600 hover:text-gray-900">About Us</a></li>
+                        <li><a href="#" class="text-base text-gray-600 hover:text-gray-900">Contact</a></li>
+                        <li><a href="#" class="text-base text-gray-600 hover:text-gray-900">Careers</a></li>
+                        <li><a href="#" class="text-base text-gray-600 hover:text-gray-900">Blog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-500 tracking-wider uppercase">Legal</h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="#" class="text-base text-gray-600 hover:text-gray-900">Privacy Policy</a></li>
+                        <li><a href="#" class="text-base text-gray-600 hover:text-gray-900">Terms of Service</a></li>
+                        <li><a href="#" class="text-base text-gray-600 hover:text-gray-900">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-12 border-t border-gray-200 pt-8">
+                <p class="text-base text-gray-400 text-center">
+                    &copy; <script>document.write(new Date().getFullYear());</script> JobConnect. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Ad Modal (hidden by default) -->
+    <div id="adModal" class="fixed inset-0 z-50 hidden">
+        <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+            </div>
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                    <div class="sm:flex sm:items-start">
+                        <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
+                            <h3 class="text-lg leading-6 font-medium text-gray-900 mb-4">Special Offer!</h3>
+                            <div class="mt-2">
+                                <img src="https://placehold.co/600x400?text=Premium+Job+Posting+Ad" alt="Advertisement" class="w-full h-auto rounded">
+                                <p class="text-gray-600 mt-4">Upgrade your profile to Premium and get 50% more visibility to employers!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                    <button type="button" id="closeAdBtn" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm">
+                        Close Ad
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Show modal ad immediately
+            const adModal = document.getElementById('adModal');
+            const closeAdBtn = document.getElementById('closeAdBtn');
+            const applyButton = document.getElementById('applyButton');
+            const countdownTimer = document.getElementById('countdownTimer');
+            
+            // Show the ad modal
+            adModal.classList.remove('hidden');
+            
+            // Close modal handler
+            closeAdBtn.addEventListener('click', function() {
+                adModal.classList.add('hidden');
+            });
+            
+            // Start countdown timer (30 seconds)
+            let timeLeft = 30;
+            const timer = setInterval(function() {
+                timeLeft--;
+                countdownTimer.textContent = timeLeft;
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    document.getElementById('countdown').classList.add('hidden');
+                    applyButton.classList.remove('hidden');
+                }
+            }, 1000);
+            
+            // Apply button click handler
+            applyButton.addEventListener('click', function() {
+                alert('Redirecting to application form...');
+                // In a real implementation, this would redirect to the actual application page
+            });
+            
+            // Parse URL parameters to load different job data
+            const urlParams = new URLSearchParams(window.location.search);
+            const jobId = urlParams.get('id');
+            
+            // In a real implementation, this would fetch job data from an API
+            // For now, we'll just simulate different job data based on the ID
+            if (jobId) {
+                const jobs = {
+                    '1': {
+                        title: "Frontend Developer",
+                        company: "Google",
+                        logo: "https://logo.clearbit.com/google.com",
+                        type: "Remote",
+                        employment: "Full-time",
+                        skills: ["JavaScript"],
+                        location: "Worldwide",
+                        salary: "$90k - $120k"
+                    },
+                    '2': {
+                        title: "Backend Engineer",
+                        company: "Amazon",
+                        logo: "https://logo.clearbit.com/amazon.com",
+                        type: "Hybrid",
+                        employment: "Full-time",
+                        skills: ["Python"],
+                        location: "Seattle, WA",
+                        salary: "$110k - $140k"
+                    },
+                    '3': {
+                        title: "UX Designer",
+                        company: "Microsoft",
+                        logo: "https://logo.clearbit.com/microsoft.com",
+                        type: "Remote",
+                        employment: "Full-time",
+                        skills: ["Figma"],
+                        location: "Redmond, WA",
+                        salary: "$95k - $125k"
+                    },
+                    '4': {
+                        title: "Data Scientist",
+                        company: "Meta",
+                        logo: "https://logo.clearbit.com/facebook.com",
+                        type: "Hybrid",
+                        employment: "Full-time",
+                        skills: ["Machine Learning"],
+                        location: "Menlo Park, CA",
+                        salary: "$120k - $150k"
+                    },
+                    '5': {
+                        title: "iOS Developer",
+                        company: "Apple",
+                        logo: "https://logo.clearbit.com/apple.com",
+                        type: "Hybrid",
+                        employment: "Full-time",
+                        skills: ["Swift"],
+                        location: "Cupertino, CA",
+                        salary: "$115k - $145k"
+                    },
+                    '6': {
+                        title: "DevOps Engineer",
+                        company: "Netflix",
+                        logo: "https://logo.clearbit.com/netflix.com",
+                        type: "Remote",
+                        employment: "Full-time",
+                        skills: ["AWS"],
+                        location: "Los Gatos, CA",
+                        salary: "$130k - $160k"
+                    }
+                };
+                
+                const job = jobs[jobId];
+                if (job) {
+                    document.getElementById('jobTitle').textContent = job.title;
+                    document.getElementById('companyName').textContent = job.company;
+                    document.getElementById('companyLogo').src = job.logo;
+                    document.getElementById('jobLocation').textContent = job.location;
+                    document.getElementById('jobSalary').textContent = job.salary;
+                    
+                    // Update job tags
+                    const jobTags = document.getElementById('jobTags');
+                    jobTags.innerHTML = '';
+                    
+                    const typeSpan = document.createElement('span');
+                    typeSpan.className = 'px-2 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full';
+                    typeSpan.textContent = job.type;
+                    jobTags.appendChild(typeSpan);
+                    
+                    const employmentSpan = document.createElement('span');
+                    employmentSpan.className = 'px-2 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full';
+                    employmentSpan.textContent = job.employment;
+                    jobTags.appendChild(employmentSpan);
+                    
+                    job.skills.forEach(skill => {
+                        const skillSpan = document.createElement('span');
+                        skillSpan.className = 'px-2 py-1 bg-purple-100 text-purple-800 text-xs font-medium rounded-full';
+                        skillSpan.textContent = skill;
+                        jobTags.appendChild(skillSpan);
+                    });
+                }
+            }
+        });
+    </script>
+</body>
+</html>
