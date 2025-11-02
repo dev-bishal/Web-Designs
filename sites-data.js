@@ -14,8 +14,17 @@ const sitesData = [
         "paragraph": "A Simple yet attractive Job Posting Website.",
         "tag": "Job Portal",
         "link": "job-portal",
-        "gradient": "from-teal-400 to-green-500",
-        "tagClass": "green"
+        "gradient": "from-teal-400 to-blue-500",
+        "tagClass": "blue"
+    },
+    {
+        "title": "Travel Tourly",
+        "imgFile": "tourly.png",
+        "paragraph": "A Travel Site Landing page.",
+        "tag": "Landing Home Page",
+        "link": "Tourly",
+        "gradient": "from-orange-500 to-blue-500",
+        "tagClass": "orange"
     },
     {
         "title": "Social Media Agency",

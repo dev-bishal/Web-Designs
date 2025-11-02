@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tourly - Discover Amazing Destinations</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">Tour<span>ly</span></a>
+                <div class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Destinations</a></li>
+                    <li><a href="#">Packages</a></li>
+                    <li><a href="#">Gallery</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+                <a href="#" class="btn">Book Now</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section with Booking Form -->
+    <section class="hero">
+        <div class="hero-slide active" style="background-image: url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');"></div>
+        <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1506929562872-bb421503ef21?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');"></div>
+        <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1439066615861-d1af74d74000?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Discover The World With Us</h1>
+                <p>Explore the most breathtaking destinations with our expertly crafted travel packages. Adventure awaits around every corner.</p>
+                <a href="#" class="btn btn-accent">Explore Destinations</a>
+            </div>
+            <div class="booking-form">
+                <h3>Book Your Adventure</h3>
+                <form id="bookingForm">
+                    <div class="form-group">
+                        <label for="destination">Destination</label>
+                        <select class="form-control" id="destination" required>
+                            <option value="">Select Destination</option>
+                            <option value="bali">Bali, Indonesia</option>
+                            <option value="swiss">Swiss Alps</option>
+                            <option value="santorini">Santorini, Greece</option>
+                            <option value="tokyo">Tokyo, Japan</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="checkin">Check-in</label>
+                            <input type="date" class="form-control" id="checkin" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="checkout">Check-out</label>
+                            <input type="date" class="form-control" id="checkout" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="adults">Adults</label>
+                            <select class="form-control" id="adults" required>
+                                <option value="1">1 Adult</option>
+                                <option value="2" selected>2 Adults</option>
+                                <option value="3">3 Adults</option>
+                                <option value="4">4 Adults</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="children">Children</label>
+                            <select class="form-control" id="children">
+                                <option value="0" selected>0 Children</option>
+                                <option value="1">1 Child</option>
+                                <option value="2">2 Children</option>
+                                <option value="3">3 Children</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%;">Check Availability</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Destinations Slider with Swiper -->
+    <section class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Popular Destinations</h2>
+                <p>Explore our most sought-after travel destinations around the world</p>
+            </div>
+            <div class="destinations-slider">
+                <div class="swiper mySwiper">
+                    <div class="swiper-wrapper">
+                        <!-- Destination 1 -->
+                        <div class="swiper-slide">
+                            <div class="destination-card">
+                                <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Bali" class="destination-img">
+                                <div class="destination-overlay">
+                                    <h3 class="destination-name">Bali, Indonesia</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Destination 2 -->
+                        <div class="swiper-slide">
+                            <div class="destination-card">
+                                <img src="https://images.unsplash.com/photo-1539635278303-d4002c07eae3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Swiss Alps" class="destination-img">
+                                <div class="destination-overlay">
+                                    <h3 class="destination-name">Swiss Alps</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Destination 3 -->
+                        <div class="swiper-slide">
+                            <div class="destination-card">
+                                <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Santorini" class="destination-img">
+                                <div class="destination-overlay">
+                                    <h3 class="destination-name">Santorini, Greece</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Destination 4 -->
+                        <div class="swiper-slide">
+                            <div class="destination-card">
+                                <img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Tokyo" class="destination-img">
+                                <div class="destination-overlay">
+                                    <h3 class="destination-name">Tokyo, Japan</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Destination 5 -->
+                        <div class="swiper-slide">
+                            <div class="destination-card">
+                                <img src="https://www.mlenny.com/wp-content/uploads/248080412_603979764083938_7974834690653241_n.jpg" alt="Paris" class="destination-img">
+                                <div class="destination-overlay">
+                                    <h3 class="destination-name">Paris, France</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Destination 6 -->
+                        <div class="swiper-slide">
+                            <div class="destination-card">
+                                <img src="https://images.unsplash.com/photo-1596436889106-be35e843f974?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Egypt" class="destination-img">
+                                <div class="destination-overlay">
+                                    <h3 class="destination-name">Cairo, Egypt</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Packages Grid -->
+    <section class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Travel Packages</h2>
+                <p>Handpicked tours and experiences curated just for you</p>
+            </div>
+            <div class="packages-grid">
+                <!-- Package 1 -->
+                <div class="package-card">
+                    <img src="https://paristickets.tours/wp-content/uploads/2022/09/arc-de-triomphe-1.jpg" alt="Paris Romance" class="package-img">
+                    <div class="package-content">
+                        <h3>Paris Romance</h3>
+                        <div class="package-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Paris, France</span>
+                        </div>
+                        <div class="package-features">
+                            <span><i class="far fa-clock"></i> 6 Days</span>
+                            <span><i class="fas fa-user-friends"></i> 2 People</span>
+                            <span><i class="fas fa-star"></i> 4.9</span>
+                        </div>
+                        <p>Experience the city of love with romantic dinners, Seine cruises, and iconic landmarks.</p>
+                        <div class="package-price">
+                            <div class="price">$1,499</div>
+                            <a href="#" class="btn">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Package 2 -->
+                <div class="package-card">
+                    <img src="https://images.unsplash.com/photo-1596436889106-be35e843f974?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Egypt Explorer" class="package-img">
+                    <div class="package-content">
+                        <h3>Egypt Explorer</h3>
+                        <div class="package-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Cairo, Egypt</span>
+                        </div>
+                        <div class="package-features">
+                            <span><i class="far fa-clock"></i> 9 Days</span>
+                            <span><i class="fas fa-user-friends"></i> 15 People</span>
+                            <span><i class="fas fa-star"></i> 4.7</span>
+                        </div>
+                        <p>Uncover ancient mysteries with visits to the pyramids, Sphinx, and Nile River cruises.</p>
+                        <div class="package-price">
+                            <div class="price">$1,799</div>
+                            <a href="#" class="btn">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Package 3 -->
+                <div class="package-card">
+                    <img src="https://www.civitatis.com/blog/wp-content/uploads/2022/08/atardecer-puente-brooklyn-1280x853.jpg" alt="New York City" class="package-img">
+                    <div class="package-content">
+                        <h3>New York City</h3>
+                        <div class="package-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>New York, USA</span>
+                        </div>
+                        <div class="package-features">
+                            <span><i class="far fa-clock"></i> 5 Days</span>
+                            <span><i class="fas fa-user-friends"></i> 4 People</span>
+                            <span><i class="fas fa-star"></i> 4.8</span>
+                        </div>
+                        <p>Explore the city that never sleeps with Broadway shows, museums, and iconic skyline views.</p>
+                        <div class="package-price">
+                            <div class="price">$1,299</div>
+                            <a href="#" class="btn">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="section gallery">
+        <div class="container">
+            <div class="section-title">
+                <h2>Travel Gallery</h2>
+                <p>Get inspired by these breathtaking moments from our travelers</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1502920917128-1aa500764cbd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Travel Image">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Travel Image">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1539635278303-d4002c07eae3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Travel Image">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Travel Image">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Travel Image">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://i.pinimg.com/originals/36/d5/d8/36d5d8d0bb43d17409a4d68f7428056d.jpg" alt="Travel Image">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1596436889106-be35e843f974?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Travel Image">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://tse3.mm.bing.net/th/id/OIP.U8nItqaB-abvUwlfCAlHSQHaLG?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Travel Image">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Travel Image">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://thepointsguy.global.ssl.fastly.net/us/originals/2020/07/1574640459_MV190074R-scaled.jpg?width=1920" alt="Travel Image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Tourly</h3>
+                    <p>Creating unforgettable travel experiences since 2010. We're dedicated to providing the best service and unique adventures.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Destinations</a></li>
+                        <li><a href="#">Packages</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Booking Info</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Travel Street, Adventure City</li>
+                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                        <li><i class="fas fa-envelope"></i> info@tourly.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; <script>document.write(new Date().getFullYear());</script> Tourly. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        // Header Scroll Effect
+        const header = document.getElementById('header');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Hero Section Image Fade
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.hero-slide');
+        
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            currentSlide = (n + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+        
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+        
+        // Change slide every 5 seconds
+        setInterval(nextSlide, 5000);
+        
+        // Initialize Swiper
+        var swiper = new Swiper(".mySwiper", {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            loop: true,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 2,
+                    spaceBetween: 20,
+                },
+                992: {
+                    slidesPerView: 3,
+                    spaceBetween: 30,
+                },
+            },
+        });
+        
+        // Booking Form Validation
+        const bookingForm = document.getElementById('bookingForm');
+        bookingForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for your booking request! We will contact you shortly with availability.');
+            bookingForm.reset();
+        });
+        
+        // Set minimum date for check-in to today
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('checkin').min = today;
+        
+        // Update checkout min date when checkin changes
+        document.getElementById('checkin').addEventListener('change', function() {
+            document.getElementById('checkout').min = this.value;
+        });
+    </script>
+</body>
+</html>
