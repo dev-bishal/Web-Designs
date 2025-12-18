@@ -1,5 +1,14 @@
 const sitesData = [
     {
+        "title": "E-Commerce and Local-Service Site UI",
+        "imgFile": "Local-Service.png",
+        "paragraph": "A Simple yet attractive E-Commerce cum Local Service Provider Website.",
+        "tag": "E-Commerce",
+        "link": "Local-Service",
+        "gradient": "from-yellow-500 to-purple-500",
+        "tagClass": "pink"
+    },
+    {
         "title": "Real Estate UI",
         "imgFile": "real-estate.png",
         "paragraph": "A sleek and Simple Real Estate interface with intuitive property browsing and detailed description.",

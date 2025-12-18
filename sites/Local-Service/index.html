@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopEasy - Your Online Shopping Destination</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3b82f6',
+                        secondary: '#1e40af',
+                        accent: '#f59e0b'
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-in-out',
+                        'slide-up': 'slideUp 0.3s ease-out',
+                        'pulse-slow': 'pulse 3s infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .navbar-hidden {
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .navbar-visible {
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .icon-card {
+            transition: all 0.3s ease;
+            border-radius: 12px;
+        }
+        
+        .icon-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .icon-container {
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .icon-card:hover .icon-container {
+            transform: scale(1.1);
+        }
+
+        .fixed-navbar {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+        
+        .swiper {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .partner-slider .swiper-slide {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100px;
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            transition: max-height 0.5s ease-in;
+        }
+        
+        .faq-item.active .faq-toggle {
+            transform: rotate(180deg);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .scroll-top-btn {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        
+        .scroll-top-btn.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        .whatsapp-btn, .call-btn {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+        }
+        
+        .whatsapp-btn:hover, .call-btn:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed w-full z-50 navbar-visible fixed-navbar">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="#" class="text-2xl font-bold text-primary flex items-center">
+                        <i class="fas fa-shopping-bag mr-2"></i>
+                        ShopEasy
+                    </a>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#" class="font-medium hover:text-primary transition">Home</a>
+                    <a href="#categories" class="font-medium hover:text-primary transition">Categories</a>
+                    <a href="#products" class="font-medium hover:text-primary transition">Products</a>
+                    <a href="#services" class="font-medium hover:text-primary transition">Services</a>
+                    <a href="#faq" class="font-medium hover:text-primary transition">FAQs</a>
+                </div>
+                
+                <!-- Icons -->
+                <div class="flex items-center space-x-6">
+                    <a href="#" class="relative">
+                        <i class="fas fa-search text-gray-700 hover:text-primary text-lg"></i>
+                    </a>
+                    <a href="#" class="relative">
+                        <i class="fas fa-heart text-gray-700 hover:text-primary text-lg"></i>
+                        <span class="absolute -top-2 -right-2 bg-accent text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">3</span>
+                    </a>
+                    <a href="#" class="relative">
+                        <i class="fas fa-shopping-cart text-gray-700 hover:text-primary text-lg"></i>
+                        <span class="absolute -top-2 -right-2 bg-primary text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">5</span>
+                    </a>
+                    
+                    <!-- Mobile Menu Button -->
+                    <button id="mobile-menu-button" class="md:hidden text-gray-700">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Navigation -->
+        <div id="mobile-menu" class="md:hidden bg-white border-t py-4 hidden">
+            <div class="container mx-auto px-4 flex flex-col space-y-4">
+                <a href="#" class="font-medium hover:text-primary transition">Home</a>
+                <a href="#categories" class="font-medium hover:text-primary transition">Categories</a>
+                <a href="#products" class="font-medium hover:text-primary transition">Products</a>
+                <a href="#services" class="font-medium hover:text-primary transition">Services</a>
+                <a href="#faq" class="font-medium hover:text-primary transition">FAQs</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-16">
+        <!-- Banner Slider -->
+        <section class="py-4 md:py-8">
+            <div class="swiper bannerSwiper container mx-auto px-4">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="bg-gradient-to-r from-primary to-secondary rounded-2xl overflow-hidden flex flex-col md:flex-row items-center p-6 md:p-12 text-white">
+                            <div class="md:w-1/2 mb-8 md:mb-0">
+                                <h2 class="text-3xl md:text-4xl font-bold mb-4">Summer Sale Up to 50% Off</h2>
+                                <p class="text-lg mb-6">Discover amazing products at incredible prices. Limited time offer!</p>
+                                <a href="#" class="inline-block bg-white text-primary font-bold py-3 px-8 rounded-lg hover:bg-gray-100 transition">Shop Now</a>
+                            </div>
+                            <div class="md:w-1/2 flex justify-center">
+                                <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Summer Sale" class="rounded-lg shadow-xl max-h-80">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="bg-gradient-to-r from-accent to-orange-500 rounded-2xl overflow-hidden flex flex-col md:flex-row items-center p-6 md:p-12 text-white">
+                            <div class="md:w-1/2 mb-8 md:mb-0">
+                                <h2 class="text-3xl md:text-4xl font-bold mb-4">New Arrivals Collection</h2>
+                                <p class="text-lg mb-6">Check out the latest trends and styles. Fresh products added daily!</p>
+                                <a href="#" class="inline-block bg-white text-accent font-bold py-3 px-8 rounded-lg hover:bg-gray-100 transition">Explore Now</a>
+                            </div>
+                            <div class="md:w-1/2 flex justify-center">
+                                <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="New Arrivals" class="rounded-lg shadow-xl max-h-80">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="bg-gradient-to-r from-green-500 to-teal-600 rounded-2xl overflow-hidden flex flex-col md:flex-row items-center p-6 md:p-12 text-white">
+                            <div class="md:w-1/2 mb-8 md:mb-0">
+                                <h2 class="text-3xl md:text-4xl font-bold mb-4">Free Shipping on Orders Over $50</h2>
+                                <p class="text-lg mb-6">Enjoy free delivery on all orders above $50. Shop more, save more!</p>
+                                <a href="#" class="inline-block bg-white text-green-600 font-bold py-3 px-8 rounded-lg hover:bg-gray-100 transition">Start Shopping</a>
+                            </div>
+                            <div class="md:w-1/2 flex justify-center">
+                                <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Free Shipping" class="rounded-lg shadow-xl max-h-80">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="swiper-pagination"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div> -->
+            </div>
+        </section>
+
+        <!--  -->
+        <section class="py-4 md:py-8">
+            <div class="container mx-auto px-4">
+                <h1 class="text-3xl md:text-4xl font-bold text-center mb-4">Our Services & Features</h1>
+                <p class="text-gray-600 text-center mb-10 max-w-3xl mx-auto">Discover all the features and services we offer with our easy-to-understand icon grid. Hover over any icon for a cool effect!</p>
+                
+                <!-- Icon Grid -->
+                <div class="grid grid-cols-3 md:grid-cols-8 gap-4 md:gap-6">
+                <!-- Icon 1: Delivery -->
+                <div class="icon-card bg-white p-4 md:p-5 text-center rounded-xl shadow-sm border border-gray-100">
+                    <div class="icon-container bg-blue-50 text-blue-600">
+                        <img src="https://cdn-icons-png.flaticon.com/128/3095/3095113.png" alt="Delivery Icon" class="w-10 h-10">
+                    </div>
+                    <h3 class="font-semibold text-sm md:text-base">Fast Delivery</h3>
+                    <p class="text-gray-500 text-xs mt-1 hidden md:block">24-hour shipping</p>
+                </div>
+                
+                <!-- Icon 2: Payment -->
+                <div class="icon-card bg-white p-4 md:p-5 text-center rounded-xl shadow-sm border border-gray-100">
+                    <div class="icon-container bg-green-50 text-green-600">
+                        <img src="https://cdn-icons-png.flaticon.com/128/1828/1828884.png" alt="Payment Icon" class="w-10 h-10">
+                    </div>
+                    <h3 class="font-semibold text-sm md:text-base">Secure Payment</h3>
+                    <p class="text-gray-500 text-xs mt-1 hidden md:block">100% safe</p>
+                </div>
+                
+                <!-- Icon 3: Support -->
+                <div class="icon-card bg-white p-4 md:p-5 text-center rounded-xl shadow-sm border border-gray-100">
+                    <div class="icon-container bg-purple-50 text-purple-600">
+                        <img src="https://cdn-icons-png.flaticon.com/128/3082/3082383.png" alt="Support Icon" class="w-10 h-10">
+                    </div>
+                    <h3 class="font-semibold text-sm md:text-base">24/7 Support</h3>
+                    <p class="text-gray-500 text-xs mt-1 hidden md:block">Always available</p>
+                </div>
+                
+                <!-- Icon 4: Returns -->
+                <div class="icon-card bg-white p-4 md:p-5 text-center rounded-xl shadow-sm border border-gray-100">
+                    <div class="icon-container bg-yellow-50 text-yellow-600">
+                        <img src="https://cdn-icons-png.flaticon.com/128/984/984172.png" alt="Returns Icon" class="w-10 h-10">
+                    </div>
+                    <h3 class="font-semibold text-sm md:text-base">Easy Returns</h3>
+                    <p class="text-gray-500 text-xs mt-1 hidden md:block">30-day policy</p>
+                </div>
+                
+                <!-- Icon 5: Quality -->
+                <div class="icon-card bg-white p-4 md:p-5 text-center rounded-xl shadow-sm border border-gray-100">
+                    <div class="icon-container bg-red-50 text-red-600">
+                        <img src="https://cdn-icons-png.flaticon.com/128/5619/5619373.png" alt="Quality Icon" class="w-10 h-10">
+                    </div>
+                    <h3 class="font-semibold text-sm md:text-base">Quality Check</h3>
+                    <p class="text-gray-500 text-xs mt-1 hidden md:block">Verified products</p>
+                </div>
+                
+                <!-- Icon 6: Discount -->
+                <div class="icon-card bg-white p-4 md:p-5 text-center rounded-xl shadow-sm border border-gray-100">
+                    <div class="icon-container bg-pink-50 text-pink-600">
+                        <img src="https://cdn-icons-png.flaticon.com/128/3135/3135715.png" alt="Discount Icon" class="w-10 h-10">
+                    </div>
+                    <h3 class="font-semibold text-sm md:text-base">Best Discount</h3>
+                    <p class="text-gray-500 text-xs mt-1 hidden md:block">Great deals</p>
+                </div>
+                
+                <!-- Icon 7: Eco Friendly -->
+                <div class="icon-card bg-white p-4 md:p-5 text-center rounded-xl shadow-sm border border-gray-100">
+                    <div class="icon-container bg-teal-50 text-teal-600">
+                        <img src="https://cdn-icons-png.flaticon.com/128/3095/3095119.png" alt="Eco Friendly Icon" class="w-10 h-10">
+                    </div>
+                    <h3 class="font-semibold text-sm md:text-base">Eco Friendly</h3>
+                    <p class="text-gray-500 text-xs mt-1 hidden md:block">Sustainable</p>
+                </div>
+                
+                <!-- Icon 8: Warranty -->
+                <div class="icon-card bg-white p-4 md:p-5 text-center rounded-xl shadow-sm border border-gray-100">
+                    <div class="icon-container bg-indigo-50 text-indigo-600">
+                        <img src="https://cdn-icons-png.flaticon.com/128/1828/1828640.png" alt="Warranty Icon" class="w-10 h-10">
+                    </div>
+                    <h3 class="font-semibold text-sm md:text-base">Warranty</h3>
+                    <p class="text-gray-500 text-xs mt-1 hidden md:block">2-year cover</p>
+                </div>
+                
+                <!-- Icon 9: Gift -->
+                <div class="icon-card bg-white p-4 md:p-5 text-center rounded-xl shadow-sm border border-gray-100">
+                    <div class="icon-container bg-orange-50 text-orange-600">
+                        <img src="https://cdn-icons-png.flaticon.com/128/891/891419.png" alt="Gift Icon" class="w-10 h-10">
+                    </div>
+                    <h3 class="font-semibold text-sm md:text-base">Gift Cards</h3>
+                    <p class="text-gray-500 text-xs mt-1 hidden md:block">Perfect presents</p>
+                </div>
+                
+                <!-- Icon 10: Tracking -->
+                <div class="icon-card bg-white p-4 md:p-5 text-center rounded-xl shadow-sm border border-gray-100">
+                    <div class="icon-container bg-blue-50 text-blue-600">
+                        <img src="https://cdn-icons-png.flaticon.com/128/684/684908.png" alt="Tracking Icon" class="w-10 h-10">
+                    </div>
+                    <h3 class="font-semibold text-sm md:text-base">Live Tracking</h3>
+                    <p class="text-gray-500 text-xs mt-1 hidden md:block">Real-time updates</p>
+                </div>
+                
+                <!-- Icon 11: Installment -->
+                <div class="icon-card bg-white p-4 md:p-5 text-center rounded-xl shadow-sm border border-gray-100">
+                    <div class="icon-container bg-green-50 text-green-600">
+                        <img src="https://cdn-icons-png.flaticon.com/128/3135/3135755.png" alt="Installment Icon" class="w-10 h-10">
+                    </div>
+                    <h3 class="font-semibold text-sm md:text-base">Installment</h3>
+                    <p class="text-gray-500 text-xs mt-1 hidden md:block">Pay in parts</p>
+                </div>
+                
+                <!-- Icon 12: Rewards -->
+                <div class="icon-card bg-white p-4 md:p-5 text-center rounded-xl shadow-sm border border-gray-100">
+                    <div class="icon-container bg-purple-50 text-purple-600">
+                        <img src="https://cdn-icons-png.flaticon.com/128/929/929552.png" alt="Rewards Icon" class="w-10 h-10">
+                    </div>
+                    <h3 class="font-semibold text-sm md:text-base">Rewards</h3>
+                    <p class="text-gray-500 text-xs mt-1 hidden md:block">Earn points</p>
+                </div>
+                
+                <!-- Icon 13: Mobile App -->
+                <div class="icon-card bg-white p-4 md:p-5 text-center rounded-xl shadow-sm border border-gray-100">
+                    <div class="icon-container bg-yellow-50 text-yellow-600">
+                        <img src="https://cdn-icons-png.flaticon.com/128/3003/3003035.png" alt="Mobile App Icon" class="w-10 h-10">
+                    </div>
+                    <h3 class="font-semibold text-sm md:text-base">Mobile App</h3>
+                    <p class="text-gray-500 text-xs mt-1 hidden md:block">Shop on mobile</p>
+                </div>
+                
+                <!-- Icon 14: Global -->
+                <div class="icon-card bg-white p-4 md:p-5 text-center rounded-xl shadow-sm border border-gray-100">
+                    <div class="icon-container bg-red-50 text-red-600">
+                        <img src="https://cdn-icons-png.flaticon.com/128/2991/2991106.png" alt="Global Icon" class="w-10 h-10">
+                    </div>
+                    <h3 class="font-semibold text-sm md:text-base">Global Shipping</h3>
+                    <p class="text-gray-500 text-xs mt-1 hidden md:block">Worldwide delivery</p>
+                </div>
+                
+                <!-- Icon 15: Packaging -->
+                <div class="icon-card bg-white p-4 md:p-5 text-center rounded-xl shadow-sm border border-gray-100">
+                    <div class="icon-container bg-pink-50 text-pink-600">
+                        <img src="https://cdn-icons-png.flaticon.com/128/3082/3082384.png" alt="Packaging Icon" class="w-10 h-10">
+                    </div>
+                    <h3 class="font-semibold text-sm md:text-base">Premium Packaging</h3>
+                    <p class="text-gray-500 text-xs mt-1 hidden md:block">Luxury unboxing</p>
+                </div>
+                
+                <!-- Icon 16: Price Match -->
+                <div class="icon-card bg-white p-4 md:p-5 text-center rounded-xl shadow-sm border border-gray-100">
+                    <div class="icon-container bg-teal-50 text-teal-600">
+                        <img src="https://cdn-icons-png.flaticon.com/128/3135/3135679.png" alt="Price Match Icon" class="w-10 h-10">
+                    </div>
+                    <h3 class="font-semibold text-sm md:text-base">Price Match</h3>
+                    <p class="text-gray-500 text-xs mt-1 hidden md:block">Best price guarantee</p>
+                </div>
+                
+                <!-- Icon 17: Assembly -->
+                <div class="icon-card bg-white p-4 md:p-5 text-center rounded-xl shadow-sm border border-gray-100">
+                    <div class="icon-container bg-indigo-50 text-indigo-600">
+                        <img src="https://cdn-icons-png.flaticon.com/128/1995/1995516.png" alt="Assembly Icon" class="w-10 h-10">
+                    </div>
+                    <h3 class="font-semibold text-sm md:text-base">Free Assembly</h3>
+                    <p class="text-gray-500 text-xs mt-1 hidden md:block">We set it up</p>
+                </div>
+                
+                <!-- Icon 18: Exchange -->
+                <div class="icon-card bg-white p-4 md:p-5 text-center rounded-xl shadow-sm border border-gray-100">
+                    <div class="icon-container bg-orange-50 text-orange-600">
+                        <img src="https://cdn-icons-png.flaticon.com/128/3135/3135697.png" alt="Exchange Icon" class="w-10 h-10">
+                    </div>
+                    <h3 class="font-semibold text-sm md:text-base">Easy Exchange</h3>
+                    <p class="text-gray-500 text-xs mt-1 hidden md:block">Quick swap</p>
+                </div>
+                
+                <!-- Icon 19: Pickup -->
+                <div class="icon-card bg-white p-4 md:p-5 text-center rounded-xl shadow-sm border border-gray-100">
+                    <div class="icon-container bg-blue-50 text-blue-600">
+                        <img src="https://cdn-icons-png.flaticon.com/128/3237/3237477.png" alt="Pickup Icon" class="w-10 h-10">
+                    </div>
+                    <h3 class="font-semibold text-sm md:text-base">Store Pickup</h3>
+                    <p class="text-gray-500 text-xs mt-1 hidden md:block">Collect nearby</p>
+                </div>
+                
+                <!-- Icon 20: Subscription -->
+                <div class="icon-card bg-white p-4 md:p-5 text-center rounded-xl shadow-sm border border-gray-100">
+                    <div class="icon-container bg-green-50 text-green-600">
+                        <img src="https://cdn-icons-png.flaticon.com/128/3135/3135709.png" alt="Subscription Icon" class="w-10 h-10">
+                    </div>
+                    <h3 class="font-semibold text-sm md:text-base">Subscribe & Save</h3>
+                    <p class="text-gray-500 text-xs mt-1 hidden md:block">Regular delivery</p>
+                </div>
+                
+                <!-- Icon 21: Members -->
+                <div class="icon-card bg-white p-4 md:p-5 text-center rounded-xl shadow-sm border border-gray-100">
+                    <div class="icon-container bg-purple-50 text-purple-600">
+                        <img src="https://cdn-icons-png.flaticon.com/128/929/929555.png" alt="Members Icon" class="w-10 h-10">
+                    </div>
+                    <h3 class="font-semibold text-sm md:text-base">Members Club</h3>
+                    <p class="text-gray-500 text-xs mt-1 hidden md:block">Exclusive benefits</p>
+                </div>
+                
+                <!-- Icon 22: Customize -->
+                <div class="icon-card bg-white p-4 md:p-5 text-center rounded-xl shadow-sm border border-gray-100">
+                    <div class="icon-container bg-yellow-50 text-yellow-600">
+                        <img src="https://cdn-icons-png.flaticon.com/128/3281/3281306.png" alt="Customize Icon" class="w-10 h-10">
+                    </div>
+                    <h3 class="font-semibold text-sm md:text-base">Customization</h3>
+                    <p class="text-gray-500 text-xs mt-1 hidden md:block">Personalize items</p>
+                </div>
+                
+                <!-- Icon 23: Bulk Order -->
+                <div class="icon-card bg-white p-4 md:p-5 text-center rounded-xl shadow-sm border border-gray-100">
+                    <div class="icon-container bg-red-50 text-red-600">
+                        <img src="https://cdn-icons-png.flaticon.com/128/3135/3135675.png" alt="Bulk Order Icon" class="w-10 h-10">
+                    </div>
+                    <h3 class="font-semibold text-sm md:text-base">Bulk Orders</h3>
+                    <p class="text-gray-500 text-xs mt-1 hidden md:block">For businesses</p>
+                </div>
+                
+                <!-- Icon 24: Recycling -->
+                <div class="icon-card bg-white p-4 md:p-5 text-center rounded-xl shadow-sm border border-gray-100">
+                    <div class="icon-container bg-pink-50 text-pink-600">
+                        <img src="https://cdn-icons-png.flaticon.com/128/3095/3095122.png" alt="Recycling Icon" class="w-10 h-10">
+                    </div>
+                    <h3 class="font-semibold text-sm md:text-base">Recycling</h3>
+                    <p class="text-gray-500 text-xs mt-1 hidden md:block">Old product take-back</p>
+                </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Grid -->
+        <section id="services" class="py-12 bg-white">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-10">Our Services</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <div class="flex flex-col items-center p-6 rounded-xl bg-gray-50 hover:bg-primary hover:text-white transition-all duration-300">
+                        <div class="bg-primary text-white p-4 rounded-full mb-4">
+                            <i class="fas fa-shipping-fast text-2xl"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Free Shipping</h3>
+                        <p class="text-center text-sm">On orders over $50</p>
+                    </div>
+                    <div class="flex flex-col items-center p-6 rounded-xl bg-gray-50 hover:bg-primary hover:text-white transition-all duration-300">
+                        <div class="bg-primary text-white p-4 rounded-full mb-4">
+                            <i class="fas fa-undo-alt text-2xl"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Easy Returns</h3>
+                        <p class="text-center text-sm">30-day return policy</p>
+                    </div>
+                    <div class="flex flex-col items-center p-6 rounded-xl bg-gray-50 hover:bg-primary hover:text-white transition-all duration-300">
+                        <div class="bg-primary text-white p-4 rounded-full mb-4">
+                            <i class="fas fa-shield-alt text-2xl"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Secure Payment</h3>
+                        <p class="text-center text-sm">100% secure payment</p>
+                    </div>
+                    <div class="flex flex-col items-center p-6 rounded-xl bg-gray-50 hover:bg-primary hover:text-white transition-all duration-300">
+                        <div class="bg-primary text-white p-4 rounded-full mb-4">
+                            <i class="fas fa-headset text-2xl"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">24/7 Support</h3>
+                        <p class="text-center text-sm">Dedicated support</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Popular Products -->
+        <section class="py-12">
+            <div class="container mx-auto px-4">
+                <div class="flex justify-between items-center mb-8">
+                    <h2 class="text-3xl font-bold">Popular Products</h2>
+                    <a href="#" class="text-primary font-medium hover:underline">View All</a>
+                </div>
+                <div class="swiper popularSwiper py-10">
+                    <div class="swiper-wrapper">
+                        <!-- Product 1 -->
+                        <div class="swiper-slide">
+                            <div class="product-card bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
+                                <div class="relative overflow-hidden">
+                                    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Wireless Headphones" class="w-full h-48 object-cover">
+                                    <div class="absolute top-3 right-3 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">Sale</div>
+                                </div>
+                                <div class="p-4">
+                                    <h3 class="font-bold text-lg mb-1">Wireless Headphones</h3>
+                                    <div class="flex items-center mb-2">
+                                        <div class="text-yellow-400">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star-half-alt"></i>
+                                        </div>
+                                        <span class="text-gray-600 text-sm ml-2">(4.5)</span>
+                                    </div>
+                                    <div class="flex justify-between items-center">
+                                        <div>
+                                            <span class="font-bold text-lg text-primary">$89.99</span>
+                                            <span class="text-gray-500 line-through text-sm ml-2">$129.99</span>
+                                        </div>
+                                        <button class="bg-primary text-white p-2 rounded-full hover:bg-secondary transition">
+                                            <i class="fas fa-shopping-cart"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Product 2 -->
+                        <div class="swiper-slide">
+                            <div class="product-card bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
+                                <div class="relative overflow-hidden">
+                                    <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Smart Watch" class="w-full h-48 object-cover">
+                                </div>
+                                <div class="p-4">
+                                    <h3 class="font-bold text-lg mb-1">Smart Watch Series 5</h3>
+                                    <div class="flex items-center mb-2">
+                                        <div class="text-yellow-400">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                        </div>
+                                        <span class="text-gray-600 text-sm ml-2">(4.0)</span>
+                                    </div>
+                                    <div class="flex justify-between items-center">
+                                        <div>
+                                            <span class="font-bold text-lg text-primary">$249.99</span>
+                                        </div>
+                                        <button class="bg-primary text-white p-2 rounded-full hover:bg-secondary transition">
+                                            <i class="fas fa-shopping-cart"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Product 3 -->
+                        <div class="swiper-slide">
+                            <div class="product-card bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
+                                <div class="relative overflow-hidden">
+                                    <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Camera" class="w-full h-48 object-cover">
+                                    <div class="absolute top-3 right-3 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">New</div>
+                                </div>
+                                <div class="p-4">
+                                    <h3 class="font-bold text-lg mb-1">Digital Camera</h3>
+                                    <div class="flex items-center mb-2">
+                                        <div class="text-yellow-400">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                        <span class="text-gray-600 text-sm ml-2">(5.0)</span>
+                                    </div>
+                                    <div class="flex justify-between items-center">
+                                        <div>
+                                            <span class="font-bold text-lg text-primary">$599.99</span>
+                                        </div>
+                                        <button class="bg-primary text-white p-2 rounded-full hover:bg-secondary transition">
+                                            <i class="fas fa-shopping-cart"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Product 4 -->
+                        <div class="swiper-slide">
+                            <div class="product-card bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
+                                <div class="relative overflow-hidden">
+                                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Running Shoes" class="w-full h-48 object-cover">
+                                </div>
+                                <div class="p-4">
+                                    <h3 class="font-bold text-lg mb-1">Running Shoes</h3>
+                                    <div class="flex items-center mb-2">
+                                        <div class="text-yellow-400">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star-half-alt"></i>
+                                        </div>
+                                        <span class="text-gray-600 text-sm ml-2">(4.5)</span>
+                                    </div>
+                                    <div class="flex justify-between items-center">
+                                        <div>
+                                            <span class="font-bold text-lg text-primary">$79.99</span>
+                                            <span class="text-gray-500 line-through text-sm ml-2">$99.99</span>
+                                        </div>
+                                        <button class="bg-primary text-white p-2 rounded-full hover:bg-secondary transition">
+                                            <i class="fas fa-shopping-cart"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product 5 -->
+                        <div class="swiper-slide">
+                            <div class="product-card bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
+                                <div class="relative overflow-hidden">
+                                    <img src="https://images.unsplash.com/photo-1765915968433-86d4d13ae1a1?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Wireless Headphones" class="w-full h-48 object-cover">
+                                    <div class="absolute top-3 right-3 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">Sale</div>
+                                </div>
+                                <div class="p-4">
+                                    <h3 class="font-bold text-lg mb-1">Wireless Headphones</h3>
+                                    <div class="flex items-center mb-2">
+                                        <div class="text-yellow-400">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star-half-alt"></i>
+                                        </div>
+                                        <span class="text-gray-600 text-sm ml-2">(4.5)</span>
+                                    </div>
+                                    <div class="flex justify-between items-center">
+                                        <div>
+                                            <span class="font-bold text-lg text-primary">$89.99</span>
+                                            <span class="text-gray-500 line-through text-sm ml-2">$129.99</span>
+                                        </div>
+                                        <button class="bg-primary text-white p-2 rounded-full hover:bg-secondary transition">
+                                            <i class="fas fa-shopping-cart"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Installation & Services Cards -->
+        <section class="py-12 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-10">Installation & Services</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-100 hover:shadow-xl transition">
+                        <div class="text-primary mb-4">
+                            <i class="fas fa-tools text-4xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Professional Installation</h3>
+                        <p class="text-gray-600 mb-4">Our certified technicians will install your products professionally and efficiently.</p>
+                        <a href="#" class="text-primary font-medium hover:underline">Learn More</a>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-100 hover:shadow-xl transition">
+                        <div class="text-primary mb-4">
+                            <i class="fas fa-calendar-check text-4xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Scheduled Maintenance</h3>
+                        <p class="text-gray-600 mb-4">Regular maintenance services to keep your products running smoothly.</p>
+                        <a href="#" class="text-primary font-medium hover:underline">Book Now</a>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-100 hover:shadow-xl transition">
+                        <div class="text-primary mb-4">
+                            <i class="fas fa-headset text-4xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">24/7 Customer Support</h3>
+                        <p class="text-gray-600 mb-4">Round-the-clock support to assist you with any queries or issues.</p>
+                        <a href="#" class="text-primary font-medium hover:underline">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories -->
+        <section id="categories" class="py-12">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-10">Shop By Category</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <a href="#" class="category-card relative overflow-hidden rounded-xl group">
+                        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Electronics" class="w-full h-48 object-cover group-hover:scale-110 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-4">
+                            <h3 class="text-white font-bold text-xl">Electronics</h3>
+                        </div>
+                    </a>
+                    <a href="#" class="category-card relative overflow-hidden rounded-xl group">
+                        <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Fashion" class="w-full h-48 object-cover group-hover:scale-110 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-4">
+                            <h3 class="text-white font-bold text-xl">Fashion</h3>
+                        </div>
+                    </a>
+                    <a href="#" class="category-card relative overflow-hidden rounded-xl group">
+                        <img src="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Home & Kitchen" class="w-full h-48 object-cover group-hover:scale-110 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-4">
+                            <h3 class="text-white font-bold text-xl">Home & Kitchen</h3>
+                        </div>
+                    </a>
+                    <a href="#" class="category-card relative overflow-hidden rounded-xl group">
+                        <img src="https://images.unsplash.com/photo-1578916171728-46686eac8d58?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Beauty & Health" class="w-full h-48 object-cover group-hover:scale-110 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-4">
+                            <h3 class="text-white font-bold text-xl">Beauty & Health</h3>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Product Cards -->
+        <section id="products" class="py-12 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <div class="flex justify-between items-center mb-8">
+                    <h2 class="text-3xl font-bold">Featured Products</h2>
+                    <a href="#" class="text-primary font-medium hover:underline">View All</a>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    <!-- Product cards will be similar to the popular products slider -->
+                    <!-- For brevity, I'm including just one example -->
+                    <div class="product-card bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
+                        <div class="relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Smartphone" class="w-full h-48 object-cover">
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-lg mb-1">Smartphone X Pro</h3>
+                            <p class="text-gray-600 text-sm mb-2">Latest model with advanced features</p>
+                            <div class="flex items-center mb-2">
+                                <div class="text-yellow-400">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                                <span class="text-gray-600 text-sm ml-2">(4.0)</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="font-bold text-lg text-primary">$899.99</span>
+                                <button class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-secondary transition">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
+                        <div class="relative overflow-hidden">
+                            <img src="https://cdn.shopify.com/s/files/1/0534/7849/0267/products/IMG-20200701-WA0009-1000x1000_900x.jpg?v=1615134769" alt="Smartphone" class="w-full h-48 object-cover">
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-lg mb-1">SmartWatch X Pro</h3>
+                            <p class="text-gray-600 text-sm mb-2">Latest model with advanced features</p>
+                            <div class="flex items-center mb-2">
+                                <div class="text-yellow-400">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                                <span class="text-gray-600 text-sm ml-2">(4.0)</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="font-bold text-lg text-primary">$899.99</span>
+                                <button class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-secondary transition">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
+                        <div class="relative overflow-hidden">
+                            <img src="https://chrisbeon.co.uk/wp-content/uploads/2014/04/shutterstock_264955139.jpg" alt="Smartphone" class="w-full h-48 object-cover">
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-lg mb-1">Kids Stationary</h3>
+                            <p class="text-gray-600 text-sm mb-2">Latest model with advanced features</p>
+                            <div class="flex items-center mb-2">
+                                <div class="text-yellow-400">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                                <span class="text-gray-600 text-sm ml-2">(4.0)</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="font-bold text-lg text-primary">$899.99</span>
+                                <button class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-secondary transition">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
+                        <div class="relative overflow-hidden">
+                            <img src="https://packagingoftheworld.com/wp-content/uploads/2025/03/sudha-aata-1-e1742286013981.png" alt="Smartphone" class="w-full h-48 object-cover">
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-lg mb-1">Aata 10Kg</h3>
+                            <p class="text-gray-600 text-sm mb-2">Latest model with advanced features</p>
+                            <div class="flex items-center mb-2">
+                                <div class="text-yellow-400">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                                <span class="text-gray-600 text-sm ml-2">(4.0)</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="font-bold text-lg text-primary">$899.99</span>
+                                <button class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-secondary transition">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Additional product cards would be here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Partner Companies Slider -->
+        <section class="py-12 bg-white">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-10">Our Partners</h2>
+                <div class="swiper partnerSwiper partner-slider">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="bg-gray-100 h-20 w-40 flex items-center justify-center rounded-lg">
+                                <span class="font-bold text-gray-700 text-xl">BrandOne</span>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="bg-gray-100 h-20 w-40 flex items-center justify-center rounded-lg">
+                                <span class="font-bold text-gray-700 text-xl">TechCorp</span>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="bg-gray-100 h-20 w-40 flex items-center justify-center rounded-lg">
+                                <span class="font-bold text-gray-700 text-xl">StyleHub</span>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="bg-gray-100 h-20 w-40 flex items-center justify-center rounded-lg">
+                                <span class="font-bold text-gray-700 text-xl">HomeEssentials</span>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="bg-gray-100 h-20 w-40 flex items-center justify-center rounded-lg">
+                                <span class="font-bold text-gray-700 text-xl">GadgetPro</span>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="bg-gray-100 h-20 w-40 flex items-center justify-center rounded-lg">
+                                <span class="font-bold text-gray-700 text-xl">FashionStar</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How Can We Help You -->
+        <section class="py-12 bg-gradient-to-r from-primary to-secondary">
+            <div class="container mx-auto px-4 text-white">
+                <h2 class="text-3xl font-bold text-center mb-6">How Can We Help You?</h2>
+                <p class="text-center text-xl max-w-3xl mx-auto mb-10">We're here to assist you with any questions about our products, services, or your shopping experience.</p>
+                <div class="flex flex-col md:flex-row justify-center space-y-6 md:space-y-0 md:space-x-8">
+                    <div class="flex flex-col items-center">
+                        <div class="bg-white text-primary p-4 rounded-full mb-4">
+                            <i class="fas fa-comments text-3xl"></i>
+                        </div>
+                        <h3 class="font-bold text-xl mb-2">Live Chat</h3>
+                        <p>Chat with our support team 24/7</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="bg-white text-primary p-4 rounded-full mb-4">
+                            <i class="fas fa-phone-alt text-3xl"></i>
+                        </div>
+                        <h3 class="font-bold text-xl mb-2">Call Us</h3>
+                        <p>1-800-SHOPEASY</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="bg-white text-primary p-4 rounded-full mb-4">
+                            <i class="fas fa-envelope text-3xl"></i>
+                        </div>
+                        <h3 class="font-bold text-xl mb-2">Email Us</h3>
+                        <p>support@shopeasy.com</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQs with Image -->
+        <section id="faq" class="py-12">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="md:w-1/2 mb-10 md:mb-0">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Customer Support" class="rounded-2xl shadow-xl">
+                    </div>
+                    <div class="md:w-1/2 md:pl-12">
+                        <h2 class="text-3xl font-bold mb-8">Frequently Asked Questions</h2>
+                        <div class="space-y-4">
+                            <div class="faq-item bg-white border border-gray-200 rounded-lg p-4">
+                                <div class="flex justify-between items-center cursor-pointer">
+                                    <h3 class="font-bold text-lg">What is your return policy?</h3>
+                                    <i class="fas fa-chevron-down faq-toggle text-primary"></i>
+                                </div>
+                                <div class="faq-answer mt-2">
+                                    <p class="text-gray-600">We offer a 30-day return policy for most items. Products must be in original condition with all tags attached. Some items may have different return conditions.</p>
+                                </div>
+                            </div>
+                            <div class="faq-item bg-white border border-gray-200 rounded-lg p-4">
+                                <div class="flex justify-between items-center cursor-pointer">
+                                    <h3 class="font-bold text-lg">How long does shipping take?</h3>
+                                    <i class="fas fa-chevron-down faq-toggle text-primary"></i>
+                                </div>
+                                <div class="faq-answer mt-2">
+                                    <p class="text-gray-600">Standard shipping takes 5-7 business days. Express shipping is available for delivery within 2-3 business days. Shipping times may vary based on location.</p>
+                                </div>
+                            </div>
+                            <div class="faq-item bg-white border border-gray-200 rounded-lg p-4">
+                                <div class="flex justify-between items-center cursor-pointer">
+                                    <h3 class="font-bold text-lg">Do you offer international shipping?</h3>
+                                    <i class="fas fa-chevron-down faq-toggle text-primary"></i>
+                                </div>
+                                <div class="faq-answer mt-2">
+                                    <p class="text-gray-600">Yes, we ship to over 50 countries worldwide. International shipping times vary between 10-20 business days depending on the destination.</p>
+                                </div>
+                            </div>
+                            <div class="faq-item bg-white border border-gray-200 rounded-lg p-4">
+                                <div class="flex justify-between items-center cursor-pointer">
+                                    <h3 class="font-bold text-lg">What payment methods do you accept?</h3>
+                                    <i class="fas fa-chevron-down faq-toggle text-primary"></i>
+                                </div>
+                                <div class="faq-answer mt-2">
+                                    <p class="text-gray-600">We accept all major credit cards (Visa, MasterCard, American Express), PayPal, Apple Pay, Google Pay, and bank transfers for certain orders.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose Us -->
+        <section class="py-12 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-10">Why Choose Us?</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100">
+                        <div class="text-primary text-4xl mb-4">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <h3 class="font-bold text-xl mb-3">Quality Products</h3>
+                        <p class="text-gray-600">We source only the highest quality products from trusted suppliers and brands.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100">
+                        <div class="text-primary text-4xl mb-4">
+                            <i class="fas fa-truck"></i>
+                        </div>
+                        <h3 class="font-bold text-xl mb-3">Fast Delivery</h3>
+                        <p class="text-gray-600">We ensure quick and reliable delivery to get your products to you as fast as possible.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100">
+                        <div class="text-primary text-4xl mb-4">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <h3 class="font-bold text-xl mb-3">Secure Shopping</h3>
+                        <p class="text-gray-600">Your security is our priority. We use the latest encryption to protect your data.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- App Install Banner -->
+        <section class="py-12 bg-gradient-to-r from-accent to-orange-500">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-col md:flex-row items-center justify-between text-white">
+                    <div class="md:w-2/3 mb-8 md:mb-0">
+                        <h2 class="text-3xl font-bold mb-4">Shop On The Go</h2>
+                        <p class="text-xl mb-6">Download our mobile app for exclusive deals, faster checkout, and personalized recommendations.</p>
+                        <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                            <a href="#" class="bg-black text-white py-3 px-6 rounded-lg flex items-center justify-center hover:bg-gray-900 transition">
+                                <i class="fab fa-apple text-2xl mr-3"></i>
+                                <div>
+                                    <div class="text-xs">Download on the</div>
+                                    <div class="font-bold text-lg">App Store</div>
+                                </div>
+                            </a>
+                            <a href="#" class="bg-black text-white py-3 px-6 rounded-lg flex items-center justify-center hover:bg-gray-900 transition">
+                                <i class="fab fa-google-play text-xl mr-3"></i>
+                                <div>
+                                    <div class="text-xs">Get it on</div>
+                                    <div class="font-bold text-lg">Google Play</div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="md:w-1/3 flex justify-center">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Mobile App" class="rounded-lg shadow-2xl">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-12 pb-6">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <a href="#" class="text-2xl font-bold text-white flex items-center mb-4">
+                        <i class="fas fa-shopping-bag mr-2"></i>
+                        ShopEasy
+                    </a>
+                    <p class="text-gray-400 mb-4">Your one-stop destination for all shopping needs. Quality products, best prices, and exceptional service.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="bg-gray-800 p-2 rounded-full hover:bg-primary transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="bg-gray-800 p-2 rounded-full hover:bg-primary transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="bg-gray-800 p-2 rounded-full hover:bg-primary transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="bg-gray-800 p-2 rounded-full hover:bg-primary transition">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold text-xl mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Home</a></li>
+                        <li><a href="#categories" class="text-gray-400 hover:text-white transition">Categories</a></li>
+                        <li><a href="#products" class="text-gray-400 hover:text-white transition">Products</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition">Services</a></li>
+                        <li><a href="#faq" class="text-gray-400 hover:text-white transition">FAQs</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold text-xl mb-4">Customer Service</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Contact Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Shipping Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Return Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Terms of Service</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold text-xl mb-4">Contact Info</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-3 text-primary"></i>
+                            <span class="text-gray-400">123 Shopping Street, Retail City, RC 10001</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt mr-3 text-primary"></i>
+                            <span class="text-gray-400">1-800-SHOPEASY</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-3 text-primary"></i>
+                            <span class="text-gray-400">support@shopeasy.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-6 text-center text-gray-400">
+                <p>&copy; 2025 ShopEasy. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollTopBtn" class="scroll-top-btn fixed bottom-24 right-6 bg-primary text-white p-3 rounded-full shadow-lg hover:bg-secondary transition">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Fixed WhatsApp and Call Buttons -->
+    <div class="fixed right-6 bottom-44 flex flex-col space-y-4">
+        <a href="https://wa.me/1234567890" target="_blank" class="whatsapp-btn bg-green-500 text-white p-4 rounded-full shadow-lg animate-pulse-slow">
+            <i class="fab fa-whatsapp text-2xl"></i>
+        </a>
+        <a href="tel:+1234567890" class="call-btn bg-primary text-white p-4 rounded-full shadow-lg">
+            <i class="fas fa-phone-alt text-2xl"></i>
+        </a>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        // Initialize Swiper sliders
+        const bannerSwiper = new Swiper('.bannerSwiper', {
+            loop: true,
+            spaceBetween: 20,
+            /* pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            }, */
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+        });
+
+        const popularSwiper = new Swiper('.popularSwiper', {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            loop: true,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 2,
+                },
+                768: {
+                    slidesPerView: 3,
+                },
+                1024: {
+                    slidesPerView: 4,
+                },
+            },
+        });
+
+        const partnerSwiper = new Swiper('.partnerSwiper', {
+            slidesPerView: 2,
+            spaceBetween: 20,
+            loop: true,
+            autoplay: {
+                delay: 2000,
+                disableOnInteraction: false,
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 3,
+                },
+                768: {
+                    slidesPerView: 4,
+                },
+                1024: {
+                    slidesPerView: 5,
+                },
+            },
+        });
+
+        // Navbar hide/show on scroll
+        let lastScrollTop = 0;
+        const navbar = document.getElementById('navbar');
+        
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                // Scroll down - hide navbar
+                navbar.classList.remove('navbar-visible');
+                navbar.classList.add('navbar-hidden');
+            } else {
+                // Scroll up - show navbar
+                navbar.classList.remove('navbar-hidden');
+                navbar.classList.add('navbar-visible');
+            }
+            
+            lastScrollTop = scrollTop;
+            
+            // Show/hide scroll to top button
+            const scrollTopBtn = document.getElementById('scrollTopBtn');
+            if (scrollTop > 300) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+
+        // Scroll to top functionality
+        document.getElementById('scrollTopBtn').addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // FAQ toggle functionality
+        document.querySelectorAll('.faq-item').forEach(item => {
+            const question = item.querySelector('.flex');
+            question.addEventListener('click', () => {
+                // Close all other FAQs
+                document.querySelectorAll('.faq-item').forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+                
+                // Toggle current FAQ
+                item.classList.toggle('active');
+            });
+        });
+
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+            
+            // Change icon
+            const icon = this.querySelector('i');
+            if (icon.classList.contains('fa-bars')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                        const menuButton = document.getElementById('mobile-menu-button');
+                        const icon = menuButton.querySelector('i');
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                }
+            });
+        });
+
+        // Add animation to elements on scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.product-card, .category-card, .faq-item');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+                
+                if (elementPosition < screenPosition) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        }
+
+        // Set initial state for animation
+        document.querySelectorAll('.product-card, .category-card, .faq-item').forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(20px)';
+            element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        });
+
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+    </script>
+</body>
+</html>
